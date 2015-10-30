@@ -8,8 +8,11 @@ This prototype was built for a friend of mine exploring issues around children p
 ### Retaining Ownership Across the Web
 
 This Chrome extension simulates the ability to remove an image (that through some mechanism a person claims ownership over) from any website so long as the content the image remains the same (achieved through hashing the image's content). There are three components to the extension to achieve this:
+
 1. A Browser action which adds a toolbar button that when clicked, shows all the images on the current web page along with a means of "removing" them from the web
+
 2. A content script that is injected into each page Chrome loads and returns a list of images the page is trying to load (Browser actions cannot access page contents, but Chrome provides a messaging capability between the Browser action and the content script)
+
 3. A background script that persists across tabs and intercepts all image loads, sniffing image hashes / URLs. All hashes / URLs are checked against a list of images to remove. If an image has been marked for removal, the original download request is cancelled.
 
 The prototype simulates browsers having some built-in ability to cooperate in removing content from the web. Currently the blocked images are stored in local storage but this would be replaced by a server.
