@@ -1,0 +1,30 @@
+{
+  "manifest_version": 2,
+
+  "name": "Thousand Islands",
+  "description": "Prototype of a system that allows people to control who can see information they have put out on the web",
+  "version": "1.0",
+
+  "browser_action": {
+    "default_icon": "icon.png",
+    "default_popup": "popup.html"
+  },
+  "background": {
+    "scripts": ["intercept.js", "md5.js"],
+    "persistent": true
+  },
+   "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content.js"]
+    }
+  ],
+  "permissions": [
+    "<all_urls>",
+    "storage",
+    "webRequest",
+    "activeTab",
+    "webRequestBlocking",
+    "https://ajax.googleapis.com/"
+  ]
+}
